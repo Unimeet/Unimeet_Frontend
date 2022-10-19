@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/home_page.dart';
+import 'package:unimeet/src/screens/Login/login_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -8,9 +9,10 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      initialRoute: '/',
+      initialRoute: '/sign-in',
       routes: {
         '/': (context) => const HomePage(),
+        '/sign-in': ((context) => const Login()),
       },
     );
   }
