@@ -76,6 +76,17 @@ class _LoginState extends State<Login> {
             Button(
               buttonText: register,
               handleClickButton: () => {},
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                "Esqueci a senha",
+                style: TextStyle(
+                  color: Color(
+                    0xFFFFFFFF,
+                  ),
+                ),
+              ),
             )
           ],
         ),
