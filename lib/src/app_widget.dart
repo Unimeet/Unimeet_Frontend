@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unimeet/src/home_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/auth_page.dart';
 import 'package:unimeet/src/screens/Login/login_page.dart';
+import 'package:unimeet/src/screens/Register/register_page.dart';
 import 'package:unimeet/src/screens/Profile/profile_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/email_page.dart';
 
@@ -16,6 +17,7 @@ class AppWidget extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/sign-in': ((context) => const Login()),
+        '/register': ((context) => const Register()),
         '/profile': (context) => const Profile(),
         '/auth': (context) => const VerfiyMfa(),
         '/password-recovery': (context) => const PasswordRecovery(),
