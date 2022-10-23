@@ -12,14 +12,13 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final String login = 'Logar';
-
   final String register = 'Cadastrar';
 
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
-  bool submitted = false;
+  final _formKey = GlobalKey<FormState>();
 
+  bool submitted = false;
   late String email;
   late String password;
 
@@ -50,71 +49,76 @@ class _LoginState extends State<Login> {
       backgroundColor: const Color(0xFF1E1E26),
       body: Container(
         margin: const EdgeInsets.only(left: 24, right: 24),
-        child: ListView(
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 96),
-              child: Center(
-                child: Text(
-                  "UNIMEET",
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 96),
+                child: Center(
+                  child: Text(
+                    "UNIMEET",
+                    style: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 64,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 108,
+              ),
+              Input(
+                controller: _emailController,
+                submitted: submitted,
+                labelText: "Email",
+                typeInput: "email",
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Input(
+                controller: _passwordController,
+                submitted: submitted,
+                labelText: "Senha",
+                typeInput: "password",
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Button(
+                buttonText: login,
+                handleClickButton: () {
+                  if (_formKey.currentState!.validate()) {
+                    handleClickLoginButton();
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Button(
+                buttonText: register,
+                handleClickButton: () {
+                  handleClickRegisterButton();
+                },
+              ),
+              TextButton(
+                onPressed: () {
+                  handleClickForgotPasswordButton();
+                },
+                child: const Text(
+                  "Esqueci a senha",
                   style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 64,
-                    fontWeight: FontWeight.w600,
+                    color: Color(
+                      0xFFFFFFFF,
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 108,
-            ),
-            Input(
-              controller: _emailController,
-              submitted: submitted,
-              labelText: "Email",
-              typeInput: "email",
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Input(
-              controller: _passwordController,
-              submitted: submitted,
-              labelText: "Senha",
-              typeInput: "password",
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Button(
-              buttonText: login,
-              handleClickButton: () {
-                handleClickLoginButton();
-              },
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Button(
-              buttonText: register,
-              handleClickButton: () {
-                handleClickRegisterButton();
-              },
-            ),
-            TextButton(
-              onPressed: () {
-                handleClickForgotPasswordButton();
-              },
-              child: const Text(
-                "Esqueci a senha",
-                style: TextStyle(
-                  color: Color(
-                    0xFFFFFFFF,
-                  ),
-                ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
