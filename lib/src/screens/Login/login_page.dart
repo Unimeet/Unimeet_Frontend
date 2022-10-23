@@ -39,8 +39,7 @@ class _LoginState extends State<Login> {
   }
 
   void handleClickForgotPasswordButton() {
-    //need to add the forgot password router right here
-    Navigator.pushNamed(context, '/');
+    Navigator.pushNamed(context, '/password-recovery');
   }
 
   @override
