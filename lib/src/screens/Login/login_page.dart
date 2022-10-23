@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/models/user_login_model.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/input_widget.dart';
 
@@ -17,8 +18,31 @@ class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
-
   bool submitted = false;
+
+  late String email;
+  late String password;
+
+  void handleClickLoginButton() {
+    setState(() {
+      submitted = true;
+      password = _passwordController.text;
+      email = _emailController.text;
+    });
+
+    UserLoginModel userData = UserLoginModel(email, password);
+    //need to pass the require route to data base right here
+  }
+
+  void handleClickRegisterButton() {
+    //need to add the register router right here
+    Navigator.pushNamed(context, '/');
+  }
+
+  void handleClickForgotPasswordButton() {
+    //need to add the forgot password router right here
+    Navigator.pushNamed(context, '/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +88,8 @@ class _LoginState extends State<Login> {
             ),
             Button(
               buttonText: login,
-              handleClickButton: () => {
-                setState(() {
-                  submitted = true;
-                })
+              handleClickButton: () {
+                handleClickLoginButton();
               },
             ),
             const SizedBox(
@@ -75,10 +97,14 @@ class _LoginState extends State<Login> {
             ),
             Button(
               buttonText: register,
-              handleClickButton: () => {},
+              handleClickButton: () {
+                handleClickRegisterButton();
+              },
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                handleClickForgotPasswordButton();
+              },
               child: const Text(
                 "Esqueci a senha",
                 style: TextStyle(
