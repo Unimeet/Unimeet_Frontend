@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/models/user_register_model.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/cpf_input_widget.dart';
 import 'package:unimeet/src/widgets/date_input_widget.dart';
@@ -49,14 +50,11 @@ class _RegisterState extends State<Register> {
     });
 
     if (checkPassword == true) {
+      UserRegisterModel userData =
+          UserRegisterModel(name, email, cpf, birthday, password);
+
       //need to pass the require route to data base right here
-      Navigator.pushNamed(context, "/create_profile", arguments: {
-        name: name,
-        email: email,
-        cpf: cpf,
-        birthday: birthday,
-        password: password
-      });
+      Navigator.pushNamed(context, "/create_profile", arguments: userData);
     }
   }
 
