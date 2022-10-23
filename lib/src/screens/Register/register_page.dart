@@ -1,6 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
-import 'package:unimeet/src/models/user_register_model.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/cpf_input_widget.dart';
 import 'package:unimeet/src/widgets/date_input_widget.dart';
@@ -26,6 +25,7 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
   bool submitted = false;
+  bool checkPassword = false;
   late String name;
   late String email;
   late String cpf;
@@ -36,6 +36,10 @@ class _RegisterState extends State<Register> {
   void handleClickRegisterButton() {
     setState(() {
       submitted = true;
+      checkPassword =
+          _passwordController.text == _confirmPasswordController.text
+              ? true
+              : false;
       name = _nameController.text;
       email = _emailController.text;
       cpf = UtilBrasilFields.removeCaracteres(_cpfController.text);
@@ -44,10 +48,16 @@ class _RegisterState extends State<Register> {
       confirmPassword = _confirmPasswordController.text;
     });
 
-    UserRegisterModel userData =
-        UserRegisterModel(name, email, cpf, birthday, password);
-    print(cpf);
-    //need to pass the require route to data base right here
+    if (checkPassword == true) {
+      //need to pass the require route to data base right here
+      Navigator.pushNamed(context, "/create_profile", arguments: {
+        name: name,
+        email: email,
+        cpf: cpf,
+        birthday: birthday,
+        password: password
+      });
+    }
   }
 
   @override
@@ -125,6 +135,12 @@ class _RegisterState extends State<Register> {
                 labelText: "Confirme a senha",
                 typeInput: "password",
               ),
+              if (checkPassword == false && submitted == true)
+                const Padding(
+                  padding: EdgeInsets.only(top: 8, left: 4),
+                  child: Text("Senhas não coincidem, tente novamente.",
+                      style: TextStyle(color: Colors.red)),
+                ),
               const SizedBox(
                 height: 40,
               ),
