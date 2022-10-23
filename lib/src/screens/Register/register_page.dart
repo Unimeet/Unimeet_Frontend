@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:unimeet/src/models/user_register_model.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/cpf_input_widget.dart';
+import 'package:unimeet/src/widgets/date_input_widget.dart';
 import 'package:unimeet/src/widgets/input_widget.dart';
 
 class Register extends StatefulWidget {
@@ -101,11 +102,10 @@ class _RegisterState extends State<Register> {
               const SizedBox(
                 height: 16,
               ),
-              Input(
+              DateInput(
                 controller: _birthdayController,
                 submitted: submitted,
                 labelText: "Data de nascimento",
-                typeInput: "text",
               ),
               const SizedBox(
                 height: 16,
