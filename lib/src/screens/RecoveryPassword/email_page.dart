@@ -22,6 +22,8 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
       email = _emailController.text;
     });
     //function to receive recovery API
+
+    Navigator.pushNamed(context, "/auth");
   }
 
   @override
