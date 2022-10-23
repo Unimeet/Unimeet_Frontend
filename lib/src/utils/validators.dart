@@ -1,17 +1,28 @@
-@override
+import 'package:brasil_fields/brasil_fields.dart';
+
 String? emailValidator(String? value) {
   if (value == null || value == "") {
-    return "Email can not be empty";
+    return "Campo de email não pode ser vazio";
   } else if (!RegExp(
           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+")
       .hasMatch(value.trim())) {
-    return "Invalid Email Address";
+    return "Endereço de email inválido";
   } else {
     return null;
   }
 }
 
-@override
+String? passwordValidator(String? value) {
+  if (value == null || value == "") {
+    return "Campo de senha não pode ser vazio";
+  } else if (!RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$")
+      .hasMatch(value.trim())) {
+    return "Insira uma senha com pelo menos uma letra maiúscula, uma minúscula e um número";
+  } else {
+    return null;
+  }
+}
+
 String validateDigit(String value, String cpf) {
   var add = 0;
   var init = int.parse(value) - 9;
@@ -21,21 +32,19 @@ String validateDigit(String value, String cpf) {
   return (add % 11) % 10 == int.parse(cpf[int.parse(value)]) ? "true" : "false";
 }
 
-@override
 String? cpfValidator(String? value) {
   if (value == null || value == "") {
-    return "CPF can not be empty";
+    return "CPF não pode ser vazio";
   } else {
-    value = value.replaceAll(RegExp(r'/[^\d]+/g'), '');
-    var r = RegExp(
-        r'/^(0{11}|1{11}|2{11}|3{11}|4{11}|5{11}|6{11}|7{11}|8{11}|9{11})$/');
-    if (value.length != 11 || r.hasMatch(value)) {
-      return "Invalid CPF";
-    }
+    bool isValid = UtilBrasilFields.isCPFValido(value);
+    return isValid ? null : "CPF inválido";
   }
-  if (validateDigit('9', value) == "true" &&
-      validateDigit('10', value) == "true") {
+}
+
+String? defaultValidator(String? value) {
+  if (value == null || value == "") {
+    return "Campo não pode estar vazio.";
+  } else {
     return null;
   }
-  return "Invalid";
 }

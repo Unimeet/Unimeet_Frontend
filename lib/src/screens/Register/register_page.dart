@@ -1,6 +1,8 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/models/user_register_model.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
+import 'package:unimeet/src/widgets/cpf_input_widget.dart';
 import 'package:unimeet/src/widgets/input_widget.dart';
 
 class Register extends StatefulWidget {
@@ -35,7 +37,7 @@ class _RegisterState extends State<Register> {
       submitted = true;
       name = _nameController.text;
       email = _emailController.text;
-      cpf = _cpfController.text;
+      cpf = UtilBrasilFields.removeCaracteres(_cpfController.text);
       birthday = _birthdayController.text;
       password = _passwordController.text;
       confirmPassword = _confirmPasswordController.text;
@@ -43,6 +45,7 @@ class _RegisterState extends State<Register> {
 
     UserRegisterModel userData =
         UserRegisterModel(name, email, cpf, birthday, password);
+    print(cpf);
     //need to pass the require route to data base right here
   }
 
@@ -57,7 +60,7 @@ class _RegisterState extends State<Register> {
           child: ListView(
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 96),
+                padding: EdgeInsets.only(top: 48),
                 child: Center(
                   child: Text(
                     "UNIMEET",
@@ -90,11 +93,10 @@ class _RegisterState extends State<Register> {
               const SizedBox(
                 height: 16,
               ),
-              Input(
+              CpfInput(
                 controller: _cpfController,
                 submitted: submitted,
                 labelText: "CPF",
-                typeInput: "text",
               ),
               const SizedBox(
                 height: 16,
@@ -103,7 +105,7 @@ class _RegisterState extends State<Register> {
                 controller: _birthdayController,
                 submitted: submitted,
                 labelText: "Data de nascimento",
-                typeInput: "text", // TODO: FIX THE THE TYPE INPUT
+                typeInput: "text",
               ),
               const SizedBox(
                 height: 16,
@@ -133,6 +135,9 @@ class _RegisterState extends State<Register> {
                     handleClickRegisterButton();
                   }
                 },
+              ),
+              const SizedBox(
+                height: 40,
               ),
             ],
           ),
