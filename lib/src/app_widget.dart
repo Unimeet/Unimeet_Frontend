@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      initialRoute: '/create_profile',
+      initialRoute: '/sign-in',
       routes: {
         '/': (context) => const HomePage(),
         '/sign-in': ((context) => const Login()),
