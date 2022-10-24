@@ -7,10 +7,14 @@ class Input extends StatelessWidget {
     required this.controller,
     required this.labelText,
     required this.submitted,
+    this.minLines = 1,
+    this.maxLines = 1,
     this.typeInput = "text",
   });
 
   final TextEditingController controller;
+  final int minLines;
+  final int maxLines;
   final String labelText;
   final String typeInput;
   final bool submitted;
@@ -18,6 +22,10 @@ class Input extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      minLines: minLines,
+      maxLines: maxLines,
+      textAlignVertical: TextAlignVertical.top,
+      textAlign: TextAlign.start,
       obscureText: typeInput == "password" ? true : false,
       autovalidateMode:
           submitted ? AutovalidateMode.always : AutovalidateMode.disabled,
@@ -49,6 +57,7 @@ class Input extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         labelText: labelText,
+        alignLabelWithHint: true,
         labelStyle: const TextStyle(color: Colors.white),
       ),
       style: const TextStyle(
