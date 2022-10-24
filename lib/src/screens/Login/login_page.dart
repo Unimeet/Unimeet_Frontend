@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
 
   void handleClickRegisterButton() {
     //need to add the register router right here
-    Navigator.pushNamed(context, '/');
+    Navigator.pushNamed(context, '/register');
   }
 
   void handleClickForgotPasswordButton() {

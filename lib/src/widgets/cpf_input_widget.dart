@@ -1,38 +1,29 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:unimeet/src/utils/validators.dart';
 
-class Input extends StatelessWidget {
-  const Input({
-    super.key,
-    required this.controller,
-    required this.labelText,
-    required this.submitted,
-    this.typeInput = "text",
-  });
+class CpfInput extends StatelessWidget {
+  const CpfInput(
+      {super.key,
+      required this.controller,
+      required this.labelText,
+      required this.submitted});
 
   final TextEditingController controller;
   final String labelText;
-  final String typeInput;
   final bool submitted;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: typeInput == "password" ? true : false,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        CpfInputFormatter()
+      ],
       autovalidateMode:
           submitted ? AutovalidateMode.always : AutovalidateMode.disabled,
-      validator: (inputValue) {
-        switch (typeInput) {
-          case "email":
-            return emailValidator(inputValue);
-
-          case "password":
-            return passwordValidator(inputValue);
-
-          default:
-            return defaultValidator(inputValue);
-        }
-      },
+      validator: (value) => cpfValidator(value),
       controller: controller,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
