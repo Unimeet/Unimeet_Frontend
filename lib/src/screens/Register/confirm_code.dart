@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 
-class Confirm_Code_Register extends StatelessWidget {
-  const Confirm_Code_Register({super.key});
+class ConfirmCodeRegister extends StatelessWidget {
+  const ConfirmCodeRegister({super.key});
 
   @override
   Widget build(BuildContext context) {
     void handleClickButton() {
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushNamed(context, '/sign-in');
     }
 
     return Scaffold(

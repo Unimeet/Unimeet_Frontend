@@ -21,6 +21,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   bool submitted = false;
+  bool error = false;
   late String email;
   late String password;
 
@@ -32,8 +33,12 @@ class _LoginState extends State<Login> {
     });
 
     UserLoginModel userData = UserLoginModel(email, password);
-    postLoginUser(userData).then((status) => UserSecureStorage.getEmail().then(
-        (email) => Navigator.pushNamed(context, '/profile', arguments: email)));
+    postLoginUser(userData).then((status) => status == 200
+        ? UserSecureStorage.getEmail().then((email) =>
+            Navigator.pushNamed(context, '/profile', arguments: email))
+        : setState(() {
+            error = true;
+          }));
   }
 
   void handleClickRegisterButton() {
@@ -85,6 +90,12 @@ class _LoginState extends State<Login> {
                 labelText: "Senha",
                 typeInput: "password",
               ),
+              if (error == true)
+                const Padding(
+                  padding: EdgeInsets.only(top: 8, left: 4),
+                  child: Text("Erro ao tentar criar perfil, tente novamente.",
+                      style: TextStyle(color: Colors.red)),
+                ),
               const SizedBox(
                 height: 40,
               ),

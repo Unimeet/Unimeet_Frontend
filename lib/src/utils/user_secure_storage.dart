@@ -5,12 +5,15 @@ class UserSecureStorage {
 
   static const _keyName = 'name';
   static const _keyPhone = 'phone';
-  static const _keyImageProfile = 'image_profile';
+  static const _keyProfileImage = 'image_profile';
   static const _keyEmail = 'email';
   static const _keyAboutMe = 'about_me';
   static const _keyCollege = 'college';
   static const _keyCourse = 'course';
   static const _keyMyCourses = 'my_courses';
+  static const _keyUserId = 'user_id';
+  static const _keyToken = 'token';
+  static const _keyIsBuddy = 'isBuddy';
 
   static Future setName(String name) async =>
       await _storage.write(key: _keyName, value: name);
@@ -23,11 +26,11 @@ class UserSecureStorage {
   static Future<String?> getPhone() async =>
       await _storage.read(key: _keyPhone);
 
-  static Future setImageProfile(String imageProfile) async =>
-      await _storage.write(key: _keyName, value: imageProfile);
+  static Future setProfileImage(String profileImage) async =>
+      await _storage.write(key: _keyProfileImage, value: profileImage);
 
-  static Future<String?> getImageProfile() async =>
-      await _storage.read(key: _keyImageProfile);
+  static Future<String?> getProfileImage() async =>
+      await _storage.read(key: _keyProfileImage);
 
   static Future setEmail(String email) async =>
       await _storage.write(key: _keyEmail, value: email);
@@ -58,4 +61,22 @@ class UserSecureStorage {
 
   static Future<String?> getMyCourses() async =>
       await _storage.read(key: _keyMyCourses);
+
+  static Future setUserId(String userId) async =>
+      await _storage.write(key: _keyUserId, value: userId);
+
+  static Future<String?> getUserId() async =>
+      await _storage.read(key: _keyUserId);
+
+  static Future setToken(String token) async =>
+      await _storage.write(key: _keyToken, value: token);
+
+  static Future<String?> getToken() async =>
+      await _storage.read(key: _keyToken);
+
+  static Future setIsBuddy(String isBuddy) async =>
+      await _storage.write(key: _keyIsBuddy, value: isBuddy);
+
+  static Future<String?> getIsBuddy() async =>
+      await _storage.read(key: _keyIsBuddy);
 }

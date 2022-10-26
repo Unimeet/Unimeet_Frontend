@@ -52,7 +52,6 @@ class _RegisterState extends State<Register> {
     if (checkPassword == true) {
       UserRegisterModel userData =
           UserRegisterModel(name, email, cpf, birthday, password);
-
       //need to pass the require route to data base right here
       Navigator.pushNamed(context, "/create_profile", arguments: userData);
     }

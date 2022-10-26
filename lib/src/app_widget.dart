@@ -24,7 +24,7 @@ class AppWidget extends StatelessWidget {
         '/auth': (context) => const VerfiyMfa(),
         '/password-recovery': (context) => const PasswordRecovery(),
         '/create_profile': (context) => const CreateProfile(),
-        '/confirm-code-register': (context) => const Confirm_Code_Register()
+        '/confirm-code-register': (context) => const ConfirmCodeRegister()
       },
     );
   }
