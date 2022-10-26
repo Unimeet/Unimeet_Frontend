@@ -1,4 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:unimeet/src/utils/date_formatter.dart';
 
 String? emailValidator(String? value) {
   if (value == null || value == "") {
@@ -45,17 +46,8 @@ String? dateValidator(String? value) {
   if (value == null || value == "") {
     return "Campo de data não pode estar vazio";
   } else {
-    String stringDay = value.substring(0, 2);
-    int integerDay = int.parse(stringDay);
-    String? validDay = integerDay > 31 || integerDay < 1 ? null : stringDay;
-    String stringMonth = value.substring(3, 5);
-    int integerMonth = int.parse(stringMonth);
-    String? validMonth =
-        integerMonth > 12 || integerMonth < 1 ? null : stringMonth;
-
-    String year = value.substring(6);
-    String dateParsed = "$year-$validMonth-$validDay";
-    if (DateTime.tryParse(dateParsed) != null) {
+    String date = dateFormatter(value);
+    if (DateTime.tryParse(date) != null) {
       return null;
     } else {
       return "Data de nascimento inválida";
