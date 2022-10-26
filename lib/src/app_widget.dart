@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unimeet/src/home_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/auth_page.dart';
 import 'package:unimeet/src/screens/Login/login_page.dart';
+import 'package:unimeet/src/screens/Register/confirm_code.dart';
 import 'package:unimeet/src/screens/Register/create_profile.dart';
 import 'package:unimeet/src/screens/Register/register_page.dart';
 import 'package:unimeet/src/screens/Profile/profile_page.dart';
@@ -25,6 +26,7 @@ class AppWidget extends StatelessWidget {
         '/password-recovery': (context) => const PasswordRecovery(),
         '/create_profile': (context) => const CreateProfile(),
         '/university': (context) => const University(),
+        '/confirm-code-register': (context) => const ConfirmCodeRegister()
       },
     );
   }

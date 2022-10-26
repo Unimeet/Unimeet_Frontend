@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
   const Button(
-      {super.key, required this.buttonText, required this.handleClickButton});
+      {super.key,
+      required this.buttonText,
+      required this.handleClickButton,
+      this.isLoading = false});
 
   final String buttonText;
   final VoidCallback handleClickButton;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +23,18 @@ class Button extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
           minimumSize: const Size.fromHeight(50)),
       onPressed: handleClickButton,
-      child: Text(
-        buttonText,
-        style: const TextStyle(
-          color: Color(0xFFEDF2FF),
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      child: isLoading
+          ? const CircularProgressIndicator(
+              color: Color(0xFFEDF2FF),
+            )
+          : Text(
+              buttonText,
+              style: const TextStyle(
+                color: Color(0xFFEDF2FF),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
     );
   }
 }

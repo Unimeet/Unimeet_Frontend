@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/models/user_login_model.dart';
+import 'package:unimeet/src/services/user/login_service.dart';
+import 'package:unimeet/src/utils/user_secure_storage.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/input_widget.dart';
 
@@ -19,6 +21,8 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   bool submitted = false;
+  bool error = false;
+  bool isLoading = false;
   late String email;
   late String password;
 
@@ -27,14 +31,20 @@ class _LoginState extends State<Login> {
       submitted = true;
       password = _passwordController.text;
       email = _emailController.text;
+      isLoading = true;
     });
 
     UserLoginModel userData = UserLoginModel(email, password);
-    //need to pass the require route to data base right here
+    postLoginUser(userData).then((status) => status == 200
+        ? UserSecureStorage.getEmail().then((email) =>
+            Navigator.pushNamed(context, '/profile', arguments: email))
+        : setState(() {
+            error = true;
+            isLoading = false;
+          }));
   }
 
   void handleClickRegisterButton() {
-    //need to add the register router right here
     Navigator.pushNamed(context, '/register');
   }
 
@@ -83,13 +93,20 @@ class _LoginState extends State<Login> {
                 labelText: "Senha",
                 typeInput: "password",
               ),
+              if (error == true)
+                const Padding(
+                  padding: EdgeInsets.only(top: 8, left: 4),
+                  child: Text("Dados inválidos tente novamente.",
+                      style: TextStyle(color: Colors.red)),
+                ),
               const SizedBox(
                 height: 40,
               ),
               Button(
                 buttonText: login,
+                isLoading: isLoading,
                 handleClickButton: () {
-                  if (_formKey.currentState!.validate()) {
+                  if (_formKey.currentState!.validate() && isLoading == false) {
                     handleClickLoginButton();
                   }
                 },
