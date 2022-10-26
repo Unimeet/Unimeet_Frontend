@@ -28,7 +28,6 @@ class _CreateProfileState extends State<CreateProfile> {
       courseStartDate = _courseStartDate.text;
       userRegisterData = userData;
     });
-    print(userRegisterData.cpf);
   }
 
   @override

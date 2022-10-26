@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/models/user_login_model.dart';
+import 'package:unimeet/src/services/user/login_service.dart';
+import 'package:unimeet/src/utils/user_secure_storage.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/input_widget.dart';
 
@@ -30,11 +32,11 @@ class _LoginState extends State<Login> {
     });
 
     UserLoginModel userData = UserLoginModel(email, password);
-    //need to pass the require route to data base right here
+    postLoginUser(userData).then((status) => UserSecureStorage.getEmail().then(
+        (email) => Navigator.pushNamed(context, '/profile', arguments: email)));
   }
 
   void handleClickRegisterButton() {
-    //need to add the register router right here
     Navigator.pushNamed(context, '/register');
   }
 
