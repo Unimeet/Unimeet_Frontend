@@ -16,7 +16,8 @@ class Profile extends StatelessWidget {
         padding: const EdgeInsets.only(left: 24),
         child: Button(
           buttonText: "Editar Informações",
-          handleClickButton: () => {},
+          handleClickButton: () =>
+              {Navigator.pushNamed(context, '/university')},
         ),
       ),
       body: Padding(
