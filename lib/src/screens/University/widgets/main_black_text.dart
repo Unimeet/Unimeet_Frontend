@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class MainBlackText extends StatelessWidget {
   const MainBlackText({super.key, required this.title});
@@ -8,7 +8,7 @@ class MainBlackText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(title,
         style: const TextStyle(
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: Colors.black,
           fontSize: 16,
           fontWeight: FontWeight.w600,
         ));

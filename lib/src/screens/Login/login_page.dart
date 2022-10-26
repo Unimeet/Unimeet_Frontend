@@ -36,8 +36,8 @@ class _LoginState extends State<Login> {
 
     UserLoginModel userData = UserLoginModel(email, password);
     postLoginUser(userData).then((status) => status == 200
-        ? UserSecureStorage.getEmail().then((email) =>
-            Navigator.pushNamed(context, '/profile', arguments: email))
+        ? UserSecureStorage.getEmail()
+            .then((email) => Navigator.pushNamed(context, '/university'))
         : setState(() {
             error = true;
             isLoading = false;
@@ -120,6 +120,7 @@ class _LoginState extends State<Login> {
                   handleClickRegisterButton();
                 },
               ),
+              const SizedBox(height: 8),
               TextButton(
                 onPressed: () {
                   handleClickForgotPasswordButton();

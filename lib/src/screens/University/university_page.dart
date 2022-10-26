@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
 import 'package:unimeet/src/screens/University/widgets/button.dart';
 
@@ -22,7 +23,7 @@ class University extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const TwoTextsButton(
-              titleText: 'Horas Complementares',
+              titleText: 'Horas Complemenprotares',
               subTitleText: 'O que são as horas complementares',
             ),
             const SizedBox(height: 16),
@@ -36,6 +37,12 @@ class University extends StatelessWidget {
               subTitleText:
                   'Entre em contato com algum veterano camarada que irá te auxiliar em suas dúvidas.',
             ),
+            const SizedBox(height: 16),
+            Button(
+                buttonText: "Exibir Perfil",
+                handleClickButton: () {
+                  Navigator.pushNamed(context, '/profile');
+                })
           ],
         ),
       ),
