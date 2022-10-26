@@ -15,10 +15,10 @@ String? emailValidator(String? value) {
 
 String? passwordValidator(String? value) {
   if (value == null || value == "") {
-    return null;
+    return "Campo de senha não pode ser vazio";
   } else if (!RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$")
       .hasMatch(value.trim())) {
-    return null;
+    return "Insira uma senha com pelo menos uma letra maiúscula, uma minúscula e um número";
   } else {
     return null;
   }

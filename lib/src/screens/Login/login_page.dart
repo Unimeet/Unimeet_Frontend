@@ -22,6 +22,7 @@ class _LoginState extends State<Login> {
 
   bool submitted = false;
   bool error = false;
+  bool isLoading = false;
   late String email;
   late String password;
 
@@ -30,6 +31,7 @@ class _LoginState extends State<Login> {
       submitted = true;
       password = _passwordController.text;
       email = _emailController.text;
+      isLoading = true;
     });
 
     UserLoginModel userData = UserLoginModel(email, password);
@@ -38,6 +40,7 @@ class _LoginState extends State<Login> {
             Navigator.pushNamed(context, '/profile', arguments: email))
         : setState(() {
             error = true;
+            isLoading = false;
           }));
   }
 
@@ -93,7 +96,7 @@ class _LoginState extends State<Login> {
               if (error == true)
                 const Padding(
                   padding: EdgeInsets.only(top: 8, left: 4),
-                  child: Text("Erro ao tentar criar perfil, tente novamente.",
+                  child: Text("Dados inválidos tente novamente.",
                       style: TextStyle(color: Colors.red)),
                 ),
               const SizedBox(
@@ -101,8 +104,9 @@ class _LoginState extends State<Login> {
               ),
               Button(
                 buttonText: login,
+                isLoading: isLoading,
                 handleClickButton: () {
-                  if (_formKey.currentState!.validate()) {
+                  if (_formKey.currentState!.validate() && isLoading == false) {
                     handleClickLoginButton();
                   }
                 },

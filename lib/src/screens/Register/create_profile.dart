@@ -123,6 +123,7 @@ class _CreateProfileState extends State<CreateProfile> {
                 ),
               Button(
                 buttonText: "Criar Perfil",
+                isLoading: isLoading,
                 handleClickButton: () {
                   handleClickCreateProfileButton(userData);
                 },
