@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/models/user_register_model.dart';
+import 'package:unimeet/src/services/user/register_service.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/date_input_widget.dart';
 import 'package:unimeet/src/widgets/dropdown_input_widget.dart';
@@ -19,6 +20,8 @@ class _CreateProfileState extends State<CreateProfile> {
   late String aboutMe;
   late UserRegisterModel userRegisterData;
   bool submitted = false;
+  bool isLoading = false;
+  bool error = false;
   final TextEditingController _courseStartDate = TextEditingController();
   final TextEditingController _aboutMe = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -27,6 +30,18 @@ class _CreateProfileState extends State<CreateProfile> {
       aboutMe = _aboutMe.text;
       courseStartDate = _courseStartDate.text;
       userRegisterData = userData;
+      isLoading = true;
+    });
+
+    postRegisterUser(userData).then((status) {
+      if (status == 200) {
+        Navigator.pushNamed(context, '/confirm-code-register');
+      } else {
+        setState(() {
+          isLoading = false;
+          error = true;
+        });
+      }
     });
   }
 
@@ -100,6 +115,12 @@ class _CreateProfileState extends State<CreateProfile> {
               const SizedBox(
                 height: 40,
               ),
+              if (error == true)
+                const Padding(
+                  padding: EdgeInsets.only(top: 8, left: 4),
+                  child: Text("Erro ao tentar criar perfil, tente novamente.",
+                      style: TextStyle(color: Colors.red)),
+                ),
               Button(
                 buttonText: "Criar Perfil",
                 handleClickButton: () {
