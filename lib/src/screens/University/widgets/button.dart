@@ -7,15 +7,16 @@ class TwoTextsButton extends StatelessWidget {
     super.key,
     required this.titleText,
     required this.subTitleText,
+    required this.handleClickButton,
   });
 
   final String titleText;
   final String subTitleText;
+  final VoidCallback handleClickButton;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: null,
       style: TextButton.styleFrom(
         backgroundColor: Colors.white,
         padding: const EdgeInsets.only(bottom: 24, top: 24),
@@ -23,6 +24,7 @@ class TwoTextsButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
+      onPressed: handleClickButton,
       child: ListTile(
         title: MainBlackText(title: titleText),
         subtitle: LabelBlackText(title: subTitleText),

@@ -9,7 +9,7 @@ class MainBlackText extends StatelessWidget {
     return Text(title,
         style: const TextStyle(
           color: Colors.black,
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: FontWeight.w600,
         ));
   }
