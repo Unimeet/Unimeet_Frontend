@@ -6,12 +6,15 @@ class LabelBlackText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: const TextStyle(
-        color: Colors.black,
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+        ),
       ),
     );
   }

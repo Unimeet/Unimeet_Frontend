@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/screens/University/widgets/cards/buddies_widget.dart';
+import 'package:unimeet/src/screens/University/widgets/cards/courses_widget.dart';
+import 'package:unimeet/src/screens/University/widgets/cards/supplementaries_hours_widget.dart';
+import 'package:unimeet/src/screens/University/widgets/cards/time_table_widget.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
 import 'package:unimeet/src/screens/University/widgets/button.dart';
 
-class University extends StatelessWidget {
+class University extends StatefulWidget {
   const University({super.key});
+
+  @override
+  State<University> createState() => _UniversityState();
+}
+
+class _UniversityState extends State<University> {
+  final _formKey = GlobalKey<FormState>();
+
+  bool editing = false;
+
+  void setEditUniversity() {
+    setState(() {
+      editing = !editing;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,28 +34,16 @@ class University extends StatelessWidget {
         margin: const EdgeInsets.only(left: 24, right: 24),
         child: ListView(
           // ignore: prefer_const_literals_to_create_immutables
+          key: _formKey,
           children: [
             const SizedBox(height: 16),
-            const TwoTextsButton(
-              titleText: 'Cursos',
-              subTitleText: 'Cursos oferecidos pela faculdade.',
-            ),
+            const Courses(),
             const SizedBox(height: 16),
-            const TwoTextsButton(
-              titleText: 'Horas Complemenprotares',
-              subTitleText: 'O que são as horas complementares',
-            ),
+            const SupplementariesHours(),
             const SizedBox(height: 16),
-            const TwoTextsButton(
-              titleText: 'Grade Horária',
-              subTitleText: 'Como montar? Quais matérias pegar?',
-            ),
+            const TimeTable(),
             const SizedBox(height: 16),
-            const TwoTextsButton(
-              titleText: 'Buddies disponíveis',
-              subTitleText:
-                  'Entre em contato com algum veterano camarada que irá te auxiliar em suas dúvidas.',
-            ),
+            const Buddies(),
             const SizedBox(height: 16),
             Button(
                 buttonText: "Exibir Perfil",
