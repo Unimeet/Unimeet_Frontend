@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_card.dart';
+import 'package:unimeet/src/screens/Courses/widgets/course_new.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class CoursesPage extends StatefulWidget {
+  const CoursesPage({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<CoursesPage> createState() => _CoursesPageState();
 }
 
-class _LoginState extends State<Login> {
-  final String login = 'Logar';
-  final String register = 'Cadastrar';
-
+class _CoursesPageState extends State<CoursesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +24,10 @@ class _LoginState extends State<Login> {
                   titleText: "Nome do Curso",
                   subTitleText: "infos gerais",
                   handleClickButton: () => print("redirect to the course")),
+              const SizedBox(height: 16),
+              CourseAdd(handleClickButton: () {
+                Navigator.pushNamed(context, '/create-course');
+              }),
             ],
           ),
         ),

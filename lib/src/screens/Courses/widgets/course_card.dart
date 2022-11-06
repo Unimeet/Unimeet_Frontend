@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unimeet/src/screens/University/widgets/label_black_text.dart';
-import 'package:unimeet/src/screens/University/widgets/main_black_text.dart';
 
 class CardButton extends StatelessWidget {
   const CardButton({
@@ -26,8 +24,23 @@ class CardButton extends StatelessWidget {
       ),
       onPressed: handleClickButton,
       child: ListTile(
-        title: MainBlackText(title: titleText),
-        subtitle: LabelBlackText(title: subTitleText),
+        title: Text(titleText,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            )),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: Text(
+            subTitleText,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
       ),
     );
   }

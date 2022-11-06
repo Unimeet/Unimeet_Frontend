@@ -8,6 +8,8 @@ import 'package:unimeet/src/screens/Register/register_page.dart';
 import 'package:unimeet/src/screens/Profile/profile_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/email_page.dart';
 import 'package:unimeet/src/screens/university/university_page.dart';
+import 'package:unimeet/src/screens/Courses/courses_page.dart';
+import 'package:unimeet/src/screens/Courses/create_courses_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -16,7 +18,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      initialRoute: '/sign-in',
+      initialRoute: '/courses',
       routes: {
         '/': (context) => const HomePage(),
         '/sign-in': ((context) => const Login()),
@@ -26,7 +28,9 @@ class AppWidget extends StatelessWidget {
         '/password-recovery': (context) => const PasswordRecovery(),
         '/create_profile': (context) => const CreateProfile(),
         '/university': (context) => const University(),
-        '/confirm-code-register': (context) => const ConfirmCodeRegister()
+        '/confirm-code-register': (context) => const ConfirmCodeRegister(),
+        '/courses': (context) => const CoursesPage(),
+        '/create-course': (context) => const CreateCourse()
       },
     );
   }
