@@ -11,7 +11,7 @@ class Courses extends StatelessWidget {
       titleText: 'Cursos',
       subTitleText: 'Cursos oferecidos pela faculdade.',
       handleClickButton: () {
-        print("do something");
+        Navigator.pushNamed(context, '/courses');
       },
     );
   }
