@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_card.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_new.dart';
+import 'package:unimeet/src/widgets/custom_appbar.dart';
 
 class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});
@@ -13,6 +14,7 @@ class _CoursesPageState extends State<CoursesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(title: "Cursos Oferecidos"),
       backgroundColor: const Color(0xFF1E1E26),
       body: Container(
         margin: const EdgeInsets.only(left: 24, right: 24),

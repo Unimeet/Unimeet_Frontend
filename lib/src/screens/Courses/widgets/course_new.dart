@@ -11,12 +11,20 @@ class CourseAdd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-          backgroundColor: const Color(0xFF1E1E26),
-          padding: const EdgeInsets.only(bottom: 24, top: 24),
-          side: const BorderSide(width: 2.0, color: Colors.white)),
-      onPressed: handleClickButton,
-      child: const Text("adicionar"),
-    );
+        style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all(const Size(380, 125)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            )),
+            side: MaterialStateProperty.all<BorderSide>(
+              const BorderSide(color: Colors.white),
+            )),
+        onPressed: handleClickButton,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 40,
+        ));
   }
 }
