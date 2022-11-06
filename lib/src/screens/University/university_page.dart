@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:unimeet/src/screens/University/widgets/cards/buddies_widget.dart';
-import 'package:unimeet/src/screens/University/widgets/cards/courses_widget.dart';
-import 'package:unimeet/src/screens/University/widgets/cards/supplementaries_hours_widget.dart';
-import 'package:unimeet/src/screens/University/widgets/cards/time_table_widget.dart';
+import 'package:unimeet/src/screens/University/widgets/card_widget.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
-import 'package:unimeet/src/screens/University/widgets/button.dart';
 
 class University extends StatefulWidget {
   const University({super.key});
@@ -37,13 +33,30 @@ class _UniversityState extends State<University> {
           key: _formKey,
           children: [
             const SizedBox(height: 16),
-            const Courses(),
+            CardWidget(
+              title: "Cursos",
+              subtitle: "Cursos oferecidos pela universidade.",
+              handleClickButton: () {},
+            ),
             const SizedBox(height: 16),
-            const SupplementariesHours(),
+            CardWidget(
+              title: "Horas complementares",
+              subtitle: "O que são as horas complementares? Quais são elas",
+              handleClickButton: () {},
+            ),
             const SizedBox(height: 16),
-            const TimeTable(),
+            CardWidget(
+              title: "Grade horária",
+              subtitle: "Como montar? Quais matérias pegar?",
+              handleClickButton: () {},
+            ),
             const SizedBox(height: 16),
-            const Buddies(),
+            CardWidget(
+              title: "Buddies disponíveis",
+              subtitle:
+                  "Entre em contato com algum veterano camarada que irá te auxiliar em suas dúvidas",
+              handleClickButton: () {},
+            ),
             const SizedBox(height: 16),
             Button(
                 buttonText: "Exibir Perfil",
