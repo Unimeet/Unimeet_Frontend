@@ -11,6 +11,13 @@ class CoursesPage extends StatefulWidget {
 }
 
 class _CoursesPageState extends State<CoursesPage> {
+  List<Course> courses = [
+    Course(name: "Engenharia de Comp", description: "testeste"),
+    Course(name: "Engenharia Biomédica", description: "testeste"),
+    Course(name: "Engenharia dos materiais", description: "testeste"),
+    Course(name: "Ciencias da computacao", description: "testeste"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,15 +25,21 @@ class _CoursesPageState extends State<CoursesPage> {
       backgroundColor: const Color(0xFF1E1E26),
       body: Container(
         margin: const EdgeInsets.only(left: 24, right: 24),
-        child: Form(
+        child: Container(
+          margin: const EdgeInsets.only(top: 20),
           child: ListView(
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
             children: [
-              const SizedBox(height: 16),
-              CardButton(
-                  titleText: "Nome do Curso",
-                  subTitleText: "infos gerais",
-                  handleClickButton: () => print("redirect to the course")),
-              const SizedBox(height: 16),
+              ListView(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                children: courses.map((course) {
+                  return CardButton(
+                      course: course,
+                      handleClickButton: () => print("redirect to the course"));
+                }).toList(),
+              ),
               CourseAdd(handleClickButton: () {
                 Navigator.pushNamed(context, '/create-course');
               }),
