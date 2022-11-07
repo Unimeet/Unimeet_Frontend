@@ -42,7 +42,9 @@ class _UniversityState extends State<University> {
             CardWidget(
               title: "Horas complementares",
               subtitle: "O que são as horas complementares? Quais são elas",
-              handleClickButton: () {},
+              handleClickButton: () {
+                Navigator.pushNamed(context, '/complementary-hours');
+              },
             ),
             const SizedBox(height: 16),
             CardWidget(
@@ -57,12 +59,6 @@ class _UniversityState extends State<University> {
                   "Entre em contato com algum veterano camarada que irá te auxiliar em suas dúvidas",
               handleClickButton: () {},
             ),
-            const SizedBox(height: 16),
-            Button(
-                buttonText: "Exibir Perfil",
-                handleClickButton: () {
-                  Navigator.pushNamed(context, '/profile');
-                })
           ],
         ),
       ),

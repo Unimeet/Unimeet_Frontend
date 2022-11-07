@@ -7,6 +7,7 @@ import 'package:unimeet/src/screens/Register/create_profile.dart';
 import 'package:unimeet/src/screens/Register/register_page.dart';
 import 'package:unimeet/src/screens/Profile/profile_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/email_page.dart';
+import 'package:unimeet/src/screens/University/complementary_hours.dart';
 import 'package:unimeet/src/screens/university/university_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -26,7 +27,8 @@ class AppWidget extends StatelessWidget {
         '/password-recovery': (context) => const PasswordRecovery(),
         '/create_profile': (context) => const CreateProfile(),
         '/university': (context) => const University(),
-        '/confirm-code-register': (context) => const ConfirmCodeRegister()
+        '/confirm-code-register': (context) => const ConfirmCodeRegister(),
+        '/complementary-hours': (context) => const ComplementaryHours()
       },
     );
   }
