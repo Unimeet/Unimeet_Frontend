@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/home_page.dart';
+import 'package:unimeet/src/screens/CourseInfo/course_page.dart';
 import 'package:unimeet/src/screens/Dashboard/dashboard_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/auth_page.dart';
 import 'package:unimeet/src/screens/Login/login_page.dart';
@@ -21,7 +22,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      initialRoute: '/dashboard',
+      initialRoute: '/university',
       routes: {
         '/': (context) => const HomePage(),
         '/sign-in': ((context) => const Login()),
@@ -37,6 +38,7 @@ class AppWidget extends StatelessWidget {
         '/complementary-hours': (context) => const ComplementaryHours(),
         '/buddies_info': (context) => const BuddiesInfo(),
         '/dashboard': (context) => const Dashboard(),
+        '/course-info': (context) => const CoursePage(),
       },
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unimeet/src/screens/Profile/widgets/label_text.dart';
-import 'package:unimeet/src/screens/Profile/widgets/main_text.dart';
+import 'package:unimeet/src/widgets/label_text.dart';
+import 'package:unimeet/src/widgets/main_text.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 
