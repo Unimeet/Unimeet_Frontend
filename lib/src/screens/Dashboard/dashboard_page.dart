@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/screens/Dashboard/profile_pic.dart';
 import 'package:unimeet/src/screens/Dashboard/widgets/dashboard_card.dart';
@@ -12,7 +14,7 @@ class Dashboard extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.only(left: 24, right: 24, top: 48),
         child: Column(children: [
-          Center(
+          const Center(
             child: Text(
               "UNIMEET",
               style: TextStyle(
@@ -22,10 +24,10 @@ class Dashboard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          ProfilePic(),
+          const ProfilePic(),
           SizedBox(
             height: 20,
           ),
