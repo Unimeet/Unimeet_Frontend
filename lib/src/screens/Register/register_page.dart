@@ -47,8 +47,7 @@ class _RegisterState extends State<Register> {
       name = _nameController.text;
       email = _emailController.text;
       cpf = UtilBrasilFields.removeCaracteres(_cpfController.text);
-      cellphone = UtilBrasilFields.obterTelefone(_cellPhoneController.text,
-          mascara: false);
+      cellphone = UtilBrasilFields.obterTelefone(_cellPhoneController.text);
       birthday = _birthdayController.text;
       password = _passwordController.text;
       confirmPassword = _confirmPasswordController.text;
