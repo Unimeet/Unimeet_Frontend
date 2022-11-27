@@ -35,9 +35,8 @@ class _LoginState extends State<Login> {
     });
 
     UserLoginModel userData = UserLoginModel(email, password);
-    postLoginUser(userData).then((status) => status == 400
-        ? UserSecureStorage.getEmail()
-            .then((email) => Navigator.pushNamed(context, '/university'))
+    postLoginUser(userData).then((status) => status == 200
+        ? {Navigator.pushNamed(context, '/dashboard')}
         : setState(() {
             error = true;
             isLoading = false;

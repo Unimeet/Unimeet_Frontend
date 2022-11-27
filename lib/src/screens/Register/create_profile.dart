@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/models/user_register_college.dart';
 import 'package:unimeet/src/models/user_register_model.dart';
 import 'package:unimeet/src/services/user/register_service.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
@@ -25,15 +26,18 @@ class _CreateProfileState extends State<CreateProfile> {
   final TextEditingController _courseStartDate = TextEditingController();
   final TextEditingController _aboutMe = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  void handleClickCreateProfileButton(UserRegisterModel userData) {
+  void handleClickCreateProfileButton(UserRegisterModel userRegisterData) {
     setState(() {
       aboutMe = _aboutMe.text;
       courseStartDate = _courseStartDate.text;
-      userRegisterData = userData;
+      userRegisterData = userRegisterData;
       isLoading = true;
     });
 
-    postRegisterUser(userData).then((status) {
+    UserRegisterCollege userCollegeData =
+        UserRegisterCollege(college, course, courseStartDate, aboutMe, false);
+
+    postRegisterUser(userRegisterData, userCollegeData).then((status) {
       if (status == 200) {
         Navigator.pushNamed(context, '/confirm-code-register');
       } else {
@@ -47,7 +51,7 @@ class _CreateProfileState extends State<CreateProfile> {
 
   @override
   Widget build(BuildContext context) {
-    final userData =
+    final userRegisterData =
         ModalRoute.of(context)!.settings.arguments as UserRegisterModel;
 
     return Scaffold(
@@ -125,7 +129,7 @@ class _CreateProfileState extends State<CreateProfile> {
                 buttonText: "Criar Perfil",
                 isLoading: isLoading,
                 handleClickButton: () {
-                  handleClickCreateProfileButton(userData);
+                  handleClickCreateProfileButton(userRegisterData);
                 },
               ),
               const SizedBox(

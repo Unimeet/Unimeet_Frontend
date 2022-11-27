@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:unimeet/src/utils/validators.dart';
 
-class CpfInput extends StatelessWidget {
-  const CpfInput(
+class CellPhoneInput extends StatelessWidget {
+  const CellPhoneInput(
       {super.key,
       required this.controller,
       required this.labelText,
@@ -19,11 +19,11 @@ class CpfInput extends StatelessWidget {
     return TextFormField(
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
-        CpfInputFormatter(),
+        TelefoneInputFormatter(),
       ],
       autovalidateMode:
           submitted ? AutovalidateMode.always : AutovalidateMode.disabled,
-      validator: (value) => cpfValidator(value),
+      validator: (value) => cellphoneValidator(value),
       controller: controller,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
