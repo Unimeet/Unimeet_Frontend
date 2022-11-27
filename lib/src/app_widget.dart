@@ -37,7 +37,7 @@ class AppWidget extends StatelessWidget {
         '/create-course': (context) => const CreateCourse(),
         '/complementary-hours': (context) => const ComplementaryHours(),
         '/buddies_info': (context) => const BuddiesInfo(),
-        '/dashboard': (context) => const Dashboard(),
+        '/dashboard': (context) => Dashboard(),
         '/course-info': (context) => const CoursePage(),
       },
     );
