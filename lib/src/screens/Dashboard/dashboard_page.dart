@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/widgets/profile_pic.dart';
 import 'package:unimeet/src/screens/Dashboard/widgets/dashboard_card.dart';
@@ -18,6 +19,8 @@ class _DashboardState extends State<Dashboard> {
   String profilePic =
       "https://s3.amazonaws.com/unimeet-dev.com.br/users/d6cf3b4f-7815-4680-b617-e93a519eca51/images/profile/image.jpg";
 
+  bool isLoadingProfile = false;
+
   @override
   void initState() {
     super.initState();
@@ -27,10 +30,26 @@ class _DashboardState extends State<Dashboard> {
   Future<void> getData() async {
     String? tempName = await UserSecureStorage.getName();
     String? tempImage = await UserSecureStorage.getProfileImage();
+
     setState(() {
       name = tempName!;
       profilePic = tempImage!;
     });
+  }
+
+  void handleCollegeButton() {
+    Navigator.pushNamed(context, '/university');
+  }
+
+  void handleProfileButton() async {
+    String? course = await UserSecureStorage.getCourse();
+    String? college = await UserSecureStorage.getCollege();
+    String? aboutMe = await UserSecureStorage.getAboutMe();
+    String? contact = await UserSecureStorage.getPhone();
+
+    if (!mounted) return;
+    Navigator.pushNamed(context, '/profile',
+        arguments: {name, profilePic, course, college, aboutMe, contact});
   }
 
   @override
@@ -71,7 +90,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           DashboardCard(
             title: 'Minha faculdade',
-            handleClickButton: () {},
+            handleClickButton: handleCollegeButton,
             color: Color(0xFF15A051),
           ),
           SizedBox(
@@ -87,7 +106,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           DashboardCard(
             title: 'Meu perfil',
-            handleClickButton: () {},
+            handleClickButton: handleProfileButton,
             color: Color(0xFF395AFC),
           ),
         ]),
