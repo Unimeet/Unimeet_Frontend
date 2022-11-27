@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
 class ProfilePic extends StatelessWidget {
-  const ProfilePic({super.key});
+  const ProfilePic(
+      {super.key,
+      this.imageURL =
+          "https://s3.amazonaws.com/unimeet-dev.com.br/users/d6cf3b4f-7815-4680-b617-e93a519eca51/images/profile/image.jpg"});
+
+  final String imageURL;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,7 @@ class ProfilePic extends StatelessWidget {
         child: SizedBox.fromSize(
           size: const Size.fromRadius(30),
           child: Image.network(
-            'https://cdn.shopify.com/s/files/1/0001/9202/0527/products/quadros-democrart-gustavo-jacob-ondas-paisagem-de-baixa-luz-beleza-incontavel-galeria-de-arte-obras-de-arte_7ba14f0d-e0e9-4dc2-adc0-2121e3fa734e_875x.jpg?v=1528209171',
+            "https://s3.amazonaws.com/unimeet-dev.com.br/users/d6cf3b4f-7815-4680-b617-e93a519eca51/images/profile/image.jpg",
             fit: BoxFit.cover,
           ),
         ),
