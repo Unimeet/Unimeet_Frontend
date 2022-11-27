@@ -42,6 +42,14 @@ String? cpfValidator(String? value) {
   }
 }
 
+String? cellphoneValidator(String? value) {
+  if (value == null || value == "") {
+    return "Campo de telefone não pode ser vazio";
+  } else {
+    return null;
+  }
+}
+
 String? dateValidator(String? value) {
   if (value == null || value == "") {
     return "Campo de data não pode estar vazio";
