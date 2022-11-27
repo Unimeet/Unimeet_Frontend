@@ -2,6 +2,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/models/user_register_model.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
+import 'package:unimeet/src/widgets/cellphone_input_widget.dart';
 import 'package:unimeet/src/widgets/cpf_input_widget.dart';
 import 'package:unimeet/src/widgets/date_input_widget.dart';
 import 'package:unimeet/src/widgets/input_widget.dart';
@@ -19,6 +20,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _cpfController = TextEditingController();
+  final TextEditingController _cellPhoneController = TextEditingController();
   final TextEditingController _birthdayController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -29,6 +31,7 @@ class _RegisterState extends State<Register> {
   bool checkPassword = false;
   late String name;
   late String email;
+  late String cellphone;
   late String cpf;
   late String birthday;
   late String password;
@@ -44,15 +47,15 @@ class _RegisterState extends State<Register> {
       name = _nameController.text;
       email = _emailController.text;
       cpf = UtilBrasilFields.removeCaracteres(_cpfController.text);
+      cellphone = UtilBrasilFields.obterTelefone(_cellPhoneController.text,
+          mascara: false);
       birthday = _birthdayController.text;
       password = _passwordController.text;
       confirmPassword = _confirmPasswordController.text;
     });
-
     if (checkPassword == true) {
       UserRegisterModel userData =
-          UserRegisterModel(name, email, cpf, birthday, password);
-      //need to pass the require route to data base right here
+          UserRegisterModel(name, email, cellphone, cpf, birthday, password);
       Navigator.pushNamed(context, "/create_profile", arguments: userData);
     }
   }
@@ -97,6 +100,14 @@ class _RegisterState extends State<Register> {
                 submitted: submitted,
                 labelText: "Email",
                 typeInput: "email",
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              CellPhoneInput(
+                controller: _cellPhoneController,
+                submitted: submitted,
+                labelText: "Telefone",
               ),
               const SizedBox(
                 height: 16,
