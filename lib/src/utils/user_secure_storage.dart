@@ -21,7 +21,7 @@ class UserSecureStorage {
   static Future<String?> getName() async => await _storage.read(key: _keyName);
 
   static Future setPhone(String phone) async =>
-      await _storage.write(key: _keyName, value: phone);
+      await _storage.write(key: _keyPhone, value: phone);
 
   static Future<String?> getPhone() async =>
       await _storage.read(key: _keyPhone);
