@@ -2,14 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:unimeet/src/screens/CourseInfo/Widgets/description.dart';
 import '../../widgets/custom_appbar.dart';
 
+class ScreenArguments {
+  final String title;
+  final String message;
+  final String id;
+
+  ScreenArguments(this.title, this.message, this.id);
+}
+
 class CoursePage extends StatelessWidget {
   const CoursePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
     return Scaffold(
       backgroundColor: const Color(0xFF1E1E26),
-      appBar: const CustomAppBar(title: "Ciência da computação"),
+      appBar: CustomAppBar(title: args.title),
       body: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24),
         child: ListView(

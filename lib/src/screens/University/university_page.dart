@@ -36,7 +36,9 @@ class _UniversityState extends State<University> {
             CardWidget(
               title: "Cursos",
               subtitle: "Cursos oferecidos pela universidade.",
-              handleClickButton: () {},
+              handleClickButton: () {
+                Navigator.pushNamed(context, '/courses');
+              },
             ),
             const SizedBox(height: 16),
             CardWidget(
