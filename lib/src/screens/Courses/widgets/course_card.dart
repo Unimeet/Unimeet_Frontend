@@ -13,7 +13,7 @@ class CardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: Colors.white,
@@ -47,6 +47,6 @@ class CardButton extends StatelessWidget {
 }
 
 class Course {
-  late String name, description;
-  Course({required this.name, required this.description});
+  late String name, description, id;
+  Course({required this.name, required this.description, required this.id});
 }

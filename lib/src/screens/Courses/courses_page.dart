@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/screens/CourseInfo/course_page.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_card.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_new.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
@@ -12,10 +13,10 @@ class CoursesPage extends StatefulWidget {
 
 class _CoursesPageState extends State<CoursesPage> {
   List<Course> courses = [
-    Course(name: "Engenharia de Comp", description: "testeste"),
-    Course(name: "Engenharia Biomédica", description: "testeste"),
-    Course(name: "Engenharia dos materiais", description: "testeste"),
-    Course(name: "Ciencias da computacao", description: "testeste"),
+    Course(name: "Engenharia de Comp", description: "testeste", id: '1'),
+    Course(name: "Engenharia Biomédica", description: "testeste", id: '2'),
+    Course(name: "Engenharia dos materiais", description: "testeste", id: '3'),
+    Course(name: "Ciencias da computacao", description: "testeste", id: '4'),
   ];
 
   @override
@@ -37,7 +38,14 @@ class _CoursesPageState extends State<CoursesPage> {
                 children: courses.map((course) {
                   return CardButton(
                       course: course,
-                      handleClickButton: () => print("redirect to the course"));
+                      handleClickButton: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/course-info',
+                          arguments: ScreenArguments(
+                              course.name, course.description, course.id),
+                        );
+                      });
                 }).toList(),
               ),
               CourseAdd(handleClickButton: () {
