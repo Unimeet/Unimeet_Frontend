@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unimeet/src/home_page.dart';
 import 'package:unimeet/src/screens/CourseInfo/course_page.dart';
 import 'package:unimeet/src/screens/Dashboard/dashboard_page.dart';
+import 'package:unimeet/src/screens/Feed/feed_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/auth_page.dart';
 import 'package:unimeet/src/screens/Login/login_page.dart';
 import 'package:unimeet/src/screens/Register/confirm_code.dart';
@@ -22,7 +23,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      initialRoute: '/sign-in',
+      initialRoute: '/feed',
       routes: {
         '/': (context) => const HomePage(),
         '/sign-in': ((context) => const Login()),
@@ -39,6 +40,7 @@ class AppWidget extends StatelessWidget {
         '/buddies_info': (context) => const BuddiesInfo(),
         '/dashboard': (context) => Dashboard(),
         '/course-info': (context) => const CoursePage(),
+        '/feed': (context) => const Feed(),
       },
     );
   }
