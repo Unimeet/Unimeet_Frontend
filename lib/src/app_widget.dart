@@ -22,9 +22,9 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      initialRoute: '/sign-in',
+      initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => const MyHomePage(title: "WebSocket Demo"),
         '/sign-in': ((context) => const Login()),
         '/register': ((context) => const Register()),
         '/profile': (context) => const Profile(),
