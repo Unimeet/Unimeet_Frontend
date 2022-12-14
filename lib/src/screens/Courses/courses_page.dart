@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unimeet/src/screens/CourseInfo/course_page.dart';
+import 'package:unimeet/src/screens/CourseInfo/course_info_page.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_card.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_new.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
