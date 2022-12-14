@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
 
-class GroupCard extends StatefulWidget {
-  const GroupCard({Key? key}) : super(key: key);
+class GroupButton extends StatefulWidget {
+  final String courseName;
+  final String message;
+  final String messageSender;
+  final int messagesQnty;
+  final int hour;
+  final int minut;
+  final String route;
+  const GroupButton(
+      {Key? key,
+      required this.courseName,
+      required this.message,
+      required this.messageSender,
+      required this.messagesQnty,
+      required this.hour,
+      required this.minut,
+      required this.route})
+      : super(key: key);
 
   @override
-  _GroupCardState createState() => _GroupCardState();
+  _GroupButtonState createState() => _GroupButtonState();
 }
 
-class _GroupCardState extends State<GroupCard> {
+class _GroupButtonState extends State<GroupButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,20 +32,22 @@ class _GroupCardState extends State<GroupCard> {
         style: TextButton.styleFrom(
           backgroundColor: Colors.white,
           padding:
-              const EdgeInsets.only(bottom: 24, top: 24, left: 16, right: 16),
+              const EdgeInsets.only(bottom: 20, top: 20, left: 16, right: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        onPressed: null,
+        onPressed: () {
+          Navigator.pushNamed(context, widget.route);
+        },
         child: Container(
-          margin: EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             vertical: 12,
           ),
           child: Row(children: [
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                "Engenharia da Computação",
+                widget.courseName,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -40,7 +58,7 @@ class _GroupCardState extends State<GroupCard> {
                 height: 8,
               ),
               Text(
-                "blablablabla",
+                '${widget.messageSender}: ${widget.message}',
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -48,18 +66,18 @@ class _GroupCardState extends State<GroupCard> {
                 ),
               ),
             ]),
-            Spacer(),
+            const Spacer(),
             Column(
               children: [
                 Text(
-                  "12:15",
-                  style: TextStyle(
+                  "${widget.hour}:${widget.minut}",
+                  style: const TextStyle(
                     fontSize: 15,
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
                 Container(
@@ -71,8 +89,8 @@ class _GroupCardState extends State<GroupCard> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    "2",
-                    style: TextStyle(
+                    (widget.messagesQnty).toString(),
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                       fontSize: 16,
