@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unimeet/src/home_page.dart';
 import 'package:unimeet/src/screens/CourseInfo/course_info_page.dart';
 import 'package:unimeet/src/screens/Dashboard/dashboard_page.dart';
+import 'package:unimeet/src/screens/GroupsList/group_page.dart';
 import 'package:unimeet/src/screens/RecoveryPassword/auth_page.dart';
 import 'package:unimeet/src/screens/Login/login_page.dart';
 import 'package:unimeet/src/screens/Register/confirm_code.dart';
@@ -42,6 +43,7 @@ class AppWidget extends StatelessWidget {
         '/dashboard': (context) => Dashboard(),
         '/course-info': (context) => const CourseInfoPage(),
         '/course': (context) => const CoursePage(),
+        '/course-groups': (context) => const GroupPage(),
       },
     );
   }
