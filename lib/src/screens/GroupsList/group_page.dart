@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unimeet/src/screens/GroupsList/group_button.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
+import 'package:unimeet/src/widgets/share_button.dart';
 
 class GroupPage extends StatefulWidget {
   const GroupPage({Key? key}) : super(key: key);
@@ -40,6 +41,12 @@ class _GroupPageState extends State<GroupPage> {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            const ShareButton(
+                content:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum diam ipsum, lobortis quis ultricies non, lacinia at justo."),
           ],
         ),
       ),
