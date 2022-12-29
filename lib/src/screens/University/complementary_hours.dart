@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/services/college/complementary_hours_service.dart';
+import 'package:unimeet/src/models/complementary_hours_model.dart';
 import 'package:unimeet/src/widgets/button_widget.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
 import 'package:unimeet/src/widgets/input_widget.dart';
@@ -29,6 +31,9 @@ class _ComplementaryHoursState extends State<ComplementaryHours> {
       complementaryText = _complementaryHours.text;
       edit = !edit;
     });
+    ComplementaryHoursModel complementaryHoursData =
+        ComplementaryHoursModel(_complementaryHours.text);
+    editComplementaryHours(complementaryHoursData).then(print);
     _complementaryHours.text = "";
   }
 

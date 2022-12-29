@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unimeet/src/screens/CourseInfo/Widgets/description.dart';
+import 'package:unimeet/src/screens/CourseInfo/widgets/description.dart';
+import 'package:unimeet/src/screens/CourseInfo/widgets/card_widget.dart';
 import '../../widgets/custom_appbar.dart';
 
 class ScreenArguments {
@@ -10,8 +11,8 @@ class ScreenArguments {
   ScreenArguments(this.title, this.message, this.id);
 }
 
-class CoursePage extends StatelessWidget {
-  const CoursePage({super.key});
+class CourseInfoPage extends StatelessWidget {
+  const CourseInfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,29 +23,39 @@ class CoursePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24),
         child: ListView(
-          children: const [
-            SizedBox(height: 16),
-            DescriptionBox(
+          children: [
+            const SizedBox(height: 16),
+            const DescriptionBox(
               title: "Tempo médio de conclusão",
               description: "3 anos",
             ),
-            DescriptionBox(
+            const DescriptionBox(
               title: "Estágio obrigatório",
               description: "Não",
             ),
-            DescriptionBox(
+            const DescriptionBox(
               title: "Trabalho de Conclusão de Curso",
               description: "Não obrigatório",
             ),
-            DescriptionBox(
+            const DescriptionBox(
               title: "Matérias obrigatórias",
               description:
                   "(teste) As do BCT, mais eletivas de vários eixos que podem ser escolhidos. Ccomp e ecomp compartilham a maioria, mas é preciso ficar atento na ementa",
             ),
-            DescriptionBox(
+            const DescriptionBox(
               title: "Descrição do curso",
               description:
                   "Muito chatinho, teorico, maçante, triste, boa sorte pois eu estou quase me retirando",
+            ),
+            CardWidget(
+              title: "Entrar",
+              handleClickButton: () {
+                Navigator.pushNamed(
+                  context,
+                  '/course',
+                  arguments: ScreenArguments(args.title, args.message, args.id),
+                );
+              },
             ),
           ],
         ),

@@ -31,6 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  share_plus: ^6.3.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,7 +41,8 @@ dependencies:
   brasil_fields: ^1.6.0
   dio: ^4.0.6
   like_button: ^2.0.4
-
+  web_socket_channel: ^2.2.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

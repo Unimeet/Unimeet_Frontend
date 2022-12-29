@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unimeet/src/screens/AvailableBuddies/widgets/profile_photo.dart';
 
 class BuddyCard extends StatelessWidget {
   const BuddyCard({super.key});
@@ -11,12 +10,15 @@ class BuddyCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(10),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          //mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const ListTile(
-              leading: ProfilePhoto(),
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://cdn.shopify.com/s/files/1/0001/9202/0527/products/quadros-democrart-gustavo-jacob-ondas-paisagem-de-baixa-luz-beleza-incontavel-galeria-de-arte-obras-de-arte_7ba14f0d-e0e9-4dc2-adc0-2121e3fa734e_875x.jpg?v=1528209171'),
+              ),
               title: Text(
                 'Isabela Cristina',
                 style: TextStyle(
@@ -46,7 +48,6 @@ class BuddyCard extends StatelessWidget {
                   child: const Text('Email'),
                   onPressed: () {/* ... */},
                 ),
-                const SizedBox(width: 8),
               ],
             ),
           ],
