@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/utils/user_secure_storage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BuddyCard extends StatelessWidget {
   const BuddyCard({super.key});
@@ -40,12 +42,14 @@ class BuddyCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 TextButton(
-                  child: const Text('WhatsApp'),
-                  onPressed: () {/* ... */},
+                  child: const Icon(Icons.whatsapp),
+                  onPressed: () async {
+                    launchWhatsApp(phone: '5512997380103');
+                  },
                 ),
                 const SizedBox(width: 8),
                 TextButton(
-                  child: const Text('Email'),
+                  child: const Icon(Icons.email),
                   onPressed: () {/* ... */},
                 ),
               ],
@@ -55,4 +59,20 @@ class BuddyCard extends StatelessWidget {
       ),
     );
   }
+
+  void launchWhatsApp({required String phone}) async {
+    final Uri whatsapp = Uri.parse('https://wa.me/$phone');
+    await canLaunchUrl(whatsapp)
+        ? launchUrl(whatsapp)
+        : print("Can't open whatsapp");
+  }
+
+  /* Future<void> getData() async {
+    String? tempNumber = await UserSecureStorage.getPhone();
+    
+    setState(() {
+      name = tempName!;
+      profilePic = tempImage!;
+    });
+  }*/
 }
