@@ -14,6 +14,7 @@ String? emailValidator(String? value) {
 }
 
 String? passwordValidator(String? value) {
+  return null;
   if (value == null || value == "") {
     return "Campo de senha não pode ser vazio";
   } else if (!RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$")
