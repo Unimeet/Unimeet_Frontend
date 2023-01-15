@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:unimeet/src/models/feed_message_model.dart';
+import 'package:unimeet/src/screens/CourseInfo/course_info_page.dart';
 import 'package:unimeet/src/screens/Feed/widgets/message_widget.dart';
 import 'package:unimeet/src/services/feed/feed_messages_service.dart';
 import 'package:unimeet/src/utils/getDayAndHour.dart';
@@ -25,11 +26,10 @@ class _FeedState extends State<Feed> {
       ..maskType = EasyLoadingMaskType.black
       ..indicatorType = EasyLoadingIndicatorType.fadingCircle;
     EasyLoading.show(status: "Carregando Posts...");
-    getFeedData();
   }
 
-  Future<void> getFeedData() async {
-    getFeedMessages("a3c3a119-dbe6-4ee3-91ac-aa34742bf2d7").then((courseData) {
+  Future<void> getFeedData(String courseId) async {
+    getFeedMessages(courseId).then((courseData) {
       List<Post> array = [];
 
       courseData.forEach((item) {
@@ -54,11 +54,10 @@ class _FeedState extends State<Feed> {
 
   @override
   Widget build(BuildContext context) {
-    const String appBarTitle = "Engenharia da computação";
-    const String universityName = "Universidade Federal de São Paulo - UNIFESP";
-
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    getFeedData(args.id ?? "a3c3a119-dbe6-4ee3-91ac-aa34742bf2d7");
     return Scaffold(
-      appBar: CustomAppBar(title: appBarTitle),
+      appBar: CustomAppBar(title: args.title),
       backgroundColor: Color(0xFF1E1E26),
       body: ListView.builder(
         itemCount: messageList.length,
