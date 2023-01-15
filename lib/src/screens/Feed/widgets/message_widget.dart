@@ -11,7 +11,9 @@ class MessageWidget extends StatelessWidget {
       required this.course,
       required this.date,
       required this.hour,
-      required this.text});
+      required this.text,
+      required this.postId,
+      required this.courseId});
 
   final String name;
   final String profilePic;
@@ -19,6 +21,8 @@ class MessageWidget extends StatelessWidget {
   final String date;
   final String hour;
   final String text;
+  final String postId;
+  final String courseId;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -26,6 +30,7 @@ class MessageWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -74,11 +79,14 @@ class MessageWidget extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Row(
-            children: const [
-              ButtonComment(
-                id: 432423,
-              ),
-              ButtonLike(id: 432432)
+            children: [
+              // ButtonComment(
+              //   id: 432423,
+              // ),
+              ButtonLike(
+                courseId: courseId,
+                postId: postId,
+              )
             ],
           )
         ],

@@ -18,3 +18,43 @@ Future getFeedMessages(String courseId) async {
     return e.response?.statusCode;
   }
 }
+
+Future postFeedLike(String courseId, String postId) async {
+  if (courseId == null || postId == null) {
+    throw Exception('Dados do botão "like" inválidos.');
+  }
+  try {
+    final dio = Dio();
+    dio.options.headers['Authorization'] = "Bearer $token";
+    final response = await dio.post(
+      '$baseURL/api/v1/feed/like',
+      data: {'courseId': courseId, 'postId': postId},
+    );
+    if (response.statusCode != 200) {
+      throw Exception(response.data['message']);
+    }
+    return response.statusCode;
+  } on DioError catch (e) {
+    throw Exception(e.response?.data['message']);
+  }
+}
+
+Future createPost(String courseId, String text) async {
+  if (courseId == null || text == null) {
+    throw Exception('Dados do input inválido.');
+  }
+  try {
+    final dio = Dio();
+    dio.options.headers['Authorization'] = "Bearer $token";
+    final response = await dio.post(
+      '$baseURL/api/v1/feed/post',
+      data: {'courseId': courseId, 'text': text},
+    );
+    if (response.statusCode != 200) {
+      throw Exception(response.data['message']);
+    }
+    return response.statusCode;
+  } on DioError catch (e) {
+    throw Exception(e.response?.data['message']);
+  }
+}
