@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/models/course_model.dart';
 import 'package:unimeet/src/screens/CourseInfo/course_info_page.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_card.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_new.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
+
+import '../../services/courses/courses_service.dart';
 
 class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});
@@ -12,12 +15,17 @@ class CoursesPage extends StatefulWidget {
 }
 
 class _CoursesPageState extends State<CoursesPage> {
-  List<Course> courses = [
-    Course(name: "Engenharia de Comp", description: "testeste", id: '1'),
-    Course(name: "Engenharia Biomédica", description: "testeste", id: '2'),
-    Course(name: "Engenharia dos materiais", description: "testeste", id: '3'),
-    Course(name: "Ciencias da computacao", description: "testeste", id: '4'),
-  ];
+  List<CourseModel> _courses = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCourses().then((courses) {
+      setState(() {
+        _courses = courses;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +43,7 @@ class _CoursesPageState extends State<CoursesPage> {
               ListView(
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
-                children: courses.map((course) {
+                children: _courses.map((course) {
                   return CardButton(
                       course: course,
                       handleClickButton: () {
@@ -43,7 +51,7 @@ class _CoursesPageState extends State<CoursesPage> {
                           context,
                           '/course-info',
                           arguments: ScreenArguments(
-                              course.name, course.description, course.id),
+                              course.name, course.duration, course.courseId),
                         );
                       });
                 }).toList(),
