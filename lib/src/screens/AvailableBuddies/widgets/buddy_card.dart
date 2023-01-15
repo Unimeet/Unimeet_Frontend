@@ -1,4 +1,8 @@
+// ignore_for_file: prefer_equal_for_default_values, unused_label
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/services/buddies/buddies_list_services.dart';
 import 'package:unimeet/src/utils/user_secure_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,7 +54,9 @@ class BuddyCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 TextButton(
                   child: const Icon(Icons.email),
-                  onPressed: () {/* ... */},
+                  onPressed: () async {
+                    getBuddy();
+                  },
                 ),
               ],
             ),
@@ -67,12 +73,15 @@ class BuddyCard extends StatelessWidget {
         : print("Can't open whatsapp");
   }
 
-  /* Future<void> getData() async {
-    String? tempNumber = await UserSecureStorage.getPhone();
-    
-    setState(() {
-      name = tempName!;
-      profilePic = tempImage!;
-    });
+  /*void getHTTP() async {
+    print('here');
+    try {
+      var response =
+          await Dio().get('https://jsonplaceholder.typicode.com/todos/1');
+      print(response);
+    } catch (e) {
+      print(e);
+    }
   }*/
 }
+//https://0ul7agory0.execute-api.us-east-1.amazonaws.com/Prod/api/v1/college/buddy/list
