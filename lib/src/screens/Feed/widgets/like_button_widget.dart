@@ -1,18 +1,20 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:like_button/like_button.dart';
+import 'package:unimeet/src/services/feed/feed_messages_service.dart';
 
 class ButtonLike extends StatelessWidget {
-  const ButtonLike({super.key, required this.id});
-  final int id;
+  const ButtonLike({
+    super.key,
+    required this.courseId,
+    required this.postId,
+  });
+  final String courseId;
+  final String postId;
 
   Future<bool> onLikeButtonTapped(bool isLiked) async {
-    /// send your request here
-    // final bool success= await sendRequest();
-
-    /// if failed, you can do nothing
-    // return success? !isLiked:isLiked;
-    return !isLiked;
+    postFeedLike(courseId, postId);
+    return true;
   }
 
   @override
