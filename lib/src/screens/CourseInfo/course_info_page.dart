@@ -52,7 +52,7 @@ class CourseInfoPage extends StatelessWidget {
               handleClickButton: () {
                 Navigator.pushNamed(
                   context,
-                  '/course',
+                  '/feed',
                   arguments: ScreenArguments(args.title, args.message, args.id),
                 );
               },
