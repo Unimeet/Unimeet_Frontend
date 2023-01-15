@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:unimeet/src/models/course_model.dart';
 import 'package:unimeet/src/screens/CourseInfo/course_info_page.dart';
 import 'package:unimeet/src/screens/Courses/widgets/course_card.dart';
@@ -20,10 +21,15 @@ class _CoursesPageState extends State<CoursesPage> {
   @override
   void initState() {
     super.initState();
+    EasyLoading.instance
+    ..maskType = EasyLoadingMaskType.black
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle;
+    EasyLoading.show(status: "Carregando Cursos...");
     getAllCourses().then((courses) {
       setState(() {
         _courses = courses;
       });
+      EasyLoading.dismiss();
     });
   }
 

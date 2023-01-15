@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:unimeet/src/models/course_model.dart';
-import 'package:unimeet/src/utils/user_secure_storage.dart';
 
 Dio dio = Dio();
 const String baseURL =
     "https://0ul7agory0.execute-api.us-east-1.amazonaws.com/Prod";
 
-String token = UserSecureStorage.getToken() as String;
+const String token = 
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3aWxlbDEzMDU0QGNhZG9sbHMuY29tIiwibmJmIjoxNjczODE3MDIxLCJjb2xsZWdlSWQiOiJmYWZhMDYwOS1iYjNiLTQzMjktODdmYi04MTI0OTk3MWY1ZDAiLCJyb2xlcyI6W10sImlzcyI6InVuaW1lZXQiLCJleHAiOjE2NzM4MjA4MjEsImlhdCI6MTY3MzgxNzAyMSwidXNlcklkIjoiZDZjZjNiNGYtNzgxNS00NjgwLWI2MTctZTkzYTUxOWVjYTUxIiwiY291cnNlSWQiOiJjODliM2I5MC0wYzc2LTQ3NGUtYTZiNC1iZjdmZDcwYmQ1YzkiLCJlbWFpbCI6IndpbGVsMTMwNTRAY2Fkb2xscy5jb20ifQ.r5jdZ11_3oL1wnpNPoQROmYC3NqprtztFN0CTzWPoCI";
 
 Future getAllCourses() async {
     try {
