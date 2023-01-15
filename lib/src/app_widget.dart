@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:unimeet/src/home_page.dart';
 import 'package:unimeet/src/screens/CourseInfo/course_info_page.dart';
 import 'package:unimeet/src/screens/Dashboard/dashboard_page.dart';
@@ -26,7 +27,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-
+      builder: EasyLoading.init(),
       initialRoute: '/feed',
       routes: {
         '/': ((context) => const Login()),
