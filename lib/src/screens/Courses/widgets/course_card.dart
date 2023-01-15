@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet/src/models/course_model.dart';
 
 class CardButton extends StatelessWidget {
   const CardButton({
@@ -7,7 +8,7 @@ class CardButton extends StatelessWidget {
     required this.handleClickButton,
   });
 
-  final Course course;
+  final CourseModel course;
   final VoidCallback handleClickButton;
 
   @override
@@ -33,7 +34,7 @@ class CardButton extends StatelessWidget {
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 12),
               child: Text(
-                course.description,
+                course.duration,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -44,9 +45,4 @@ class CardButton extends StatelessWidget {
           ),
         ));
   }
-}
-
-class Course {
-  late String name, description, id;
-  Course({required this.name, required this.description, required this.id});
 }

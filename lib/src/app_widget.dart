@@ -28,7 +28,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
       builder: EasyLoading.init(),
-      initialRoute: '/feed',
+      initialRoute: '/courses',
       routes: {
         '/': ((context) => const Login()),
         '/websocket': (context) => const MyHomePage(title: "WebSocket Demo"),
