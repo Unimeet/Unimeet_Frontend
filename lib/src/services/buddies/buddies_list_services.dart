@@ -1,28 +1,42 @@
 import 'package:dio/dio.dart';
 import 'package:unimeet/src/models/buddies_list_model.dart';
 
-Dio dio = Dio();
 const String baseURL =
     "https://0ul7agory0.execute-api.us-east-1.amazonaws.com/Prod";
 
 const String token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3aWxlbDEzMDU0QGNhZG9sbHMuY29tIiwibmJmIjoxNjczODE3MDIxLCJjb2xsZWdlSWQiOiJmYWZhMDYwOS1iYjNiLTQzMjktODdmYi04MTI0OTk3MWY1ZDAiLCJyb2xlcyI6W10sImlzcyI6InVuaW1lZXQiLCJleHAiOjE2NzM4MjA4MjEsImlhdCI6MTY3MzgxNzAyMSwidXNlcklkIjoiZDZjZjNiNGYtNzgxNS00NjgwLWI2MTctZTkzYTUxOWVjYTUxIiwiY291cnNlSWQiOiJjODliM2I5MC0wYzc2LTQ3NGUtYTZiNC1iZjdmZDcwYmQ1YzkiLCJlbWFpbCI6IndpbGVsMTMwNTRAY2Fkb2xscy5jb20ifQ.r5jdZ11_3oL1wnpNPoQROmYC3NqprtztFN0CTzWPoCI";
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3aWxlbDEzMDU0QGNhZG9sbHMuY29tIiwibmJmIjoxNjczODM4Njc3LCJjb2xsZWdlSWQiOiJmYWZhMDYwOS1iYjNiLTQzMjktODdmYi04MTI0OTk3MWY1ZDAiLCJyb2xlcyI6W10sImlzcyI6InVuaW1lZXQiLCJleHAiOjE2NzM4NDI0NzcsImlhdCI6MTY3MzgzODY3NywidXNlcklkIjoiZDZjZjNiNGYtNzgxNS00NjgwLWI2MTctZTkzYTUxOWVjYTUxIiwiY291cnNlSWQiOiJjODliM2I5MC0wYzc2LTQ3NGUtYTZiNC1iZjdmZDcwYmQ1YzkiLCJlbWFpbCI6IndpbGVsMTMwNTRAY2Fkb2xscy5jb20ifQ.WT8x4aIZMjylJbLSaQ8oSOjvGXdfazi6oo_YjoIXd9c";
 
 Future getBuddy() async {
   print('here');
   try {
+    final dio = Dio();
     dio.options.headers["Authorization"] = "Bearer $token";
     Response response = await dio.get('$baseURL/api/v1/college/buddy/list',
         queryParameters: {'collegeId': 'fafa0609-bb3b-4329-87fb-81249971f5d0'});
 
-    var users = response.data as Map<String, dynamic>;
-    List<buddiesListModel> buddiesList = (users["users"] as List)
-        .map((c) => buddiesListModel.fromJson(c))
-        .toList();
-    print(buddiesList);
+    List<buddiesListModel> buddiesList = [];
+    response.data['users'].forEach((user) {
+      buddiesListModel buddy = buddiesListModel(
+          id: user['id'],
+          email: user['email'],
+          name: user['name'],
+          cpf: user['cpf'],
+          birthdate: user['birthdate'],
+          cellphone: user['cellphone'],
+          college: user['college'],
+          course: user['course'] ?? '0',
+          startCourseDate: user['startCourseDate'],
+          aboutMe: user['aboutMe'],
+          buddy: user['buddy'],
+          createdAt: user['createdAt'],
+          updatedAt: user['updatedAt']);
+      buddiesList.add(buddy);
+    });
+    print(buddiesList[0].name);
     return buddiesList;
-  } catch (e) {
-    print(e);
+  } on DioError catch (e) {
+    return e.response?.statusCode;
   }
 }
 

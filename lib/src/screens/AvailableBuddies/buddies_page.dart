@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:unimeet/src/models/buddies_list_model.dart';
 import 'package:unimeet/src/screens/AvailableBuddies/widgets/buddy_card.dart';
 import 'package:unimeet/src/services/buddies/buddies_list_services.dart';
 import 'package:unimeet/src/widgets/custom_appbar.dart';
@@ -13,6 +15,23 @@ class BuddiesInfo extends StatefulWidget {
 }
 
 class _BuddiesInfoState extends State<BuddiesInfo> {
+  List<buddiesListModel> _buddies = [];
+
+  @override
+  void initState() {
+    super.initState();
+    EasyLoading.instance
+      ..maskType = EasyLoadingMaskType.black
+      ..indicatorType = EasyLoadingIndicatorType.fadingCircle;
+    EasyLoading.show(status: "Procurando buddies...");
+    getBuddy().then((users) {
+      setState(() {
+        _buddies = users;
+      });
+      EasyLoading.dismiss();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +40,15 @@ class _BuddiesInfoState extends State<BuddiesInfo> {
       body: Container(
         margin: const EdgeInsets.only(left: 24, right: 24),
         child: ListView(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            SizedBox(height: 16),
-            BuddyCard(),
-          ],
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          children: _buddies.map((buddy) {
+            return BuddyCard(
+              name: buddy.name,
+              course: buddy.course,
+              cellphone: buddy.cellphone,
+            );
+          }).toList(),
         ),
       ),
     );

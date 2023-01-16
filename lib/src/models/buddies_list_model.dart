@@ -27,26 +27,4 @@ class buddiesListModel {
       required this.buddy,
       required this.createdAt,
       required this.updatedAt});
-
-  @override
-  String toString() {
-    return '{id: $id, email: $email, name: $name, cpf: $cpf, birthdate: $birthdate, cellphone: $cellphone, college: $college, course: $course, startCourseDate: $startCourseDate, aboutMe: $aboutMe, buddy: $buddy, createdAt: $createdAt, updatedAt: $updatedAt,}';
-  }
-
-  factory buddiesListModel.fromJson(Map<String, dynamic> json) {
-    return buddiesListModel(
-        name: json['name'],
-        course: json['course'],
-        cellphone: json['cellphone'],
-        updatedAt: json['updatedAt'],
-        startCourseDate: json['startCourseDate'],
-        id: json['id'],
-        email: json['email'],
-        createdAt: json['createdAt'],
-        cpf: json['cpf'],
-        college: json['college'],
-        buddy: json['buddy'],
-        birthdate: json['birthdate'],
-        aboutMe: json['aboutMe']);
-  }
 }

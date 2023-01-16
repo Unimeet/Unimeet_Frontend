@@ -7,7 +7,15 @@ import 'package:unimeet/src/utils/user_secure_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BuddyCard extends StatelessWidget {
-  const BuddyCard({super.key});
+  const BuddyCard(
+      {super.key,
+      required this.name,
+      required this.course,
+      required this.cellphone});
+
+  final String name;
+  final String course;
+  final String cellphone;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +28,13 @@ class BuddyCard extends StatelessWidget {
         child: Column(
           //mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const ListTile(
+            ListTile(
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://cdn.shopify.com/s/files/1/0001/9202/0527/products/quadros-democrart-gustavo-jacob-ondas-paisagem-de-baixa-luz-beleza-incontavel-galeria-de-arte-obras-de-arte_7ba14f0d-e0e9-4dc2-adc0-2121e3fa734e_875x.jpg?v=1528209171'),
               ),
               title: Text(
-                'Isabela Cristina',
+                name,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -34,7 +42,7 @@ class BuddyCard extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                'Ciencia da computacao',
+                course,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -48,7 +56,7 @@ class BuddyCard extends StatelessWidget {
                 TextButton(
                   child: const Icon(Icons.whatsapp),
                   onPressed: () async {
-                    launchWhatsApp(phone: '5512997380103');
+                    launchWhatsApp();
                   },
                 ),
                 const SizedBox(width: 8),
@@ -66,8 +74,10 @@ class BuddyCard extends StatelessWidget {
     );
   }
 
-  void launchWhatsApp({required String phone}) async {
-    final Uri whatsapp = Uri.parse('https://wa.me/$phone');
+  void launchWhatsApp() async {
+    print(cellphone);
+    final cleaned = cellphone.replaceAll(RegExp(r'[^\d]'), '');
+    final Uri whatsapp = Uri.parse('https://wa.me/+55$cleaned');
     await canLaunchUrl(whatsapp)
         ? launchUrl(whatsapp)
         : print("Can't open whatsapp");
